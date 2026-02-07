@@ -2,3 +2,4 @@
   djangorestframework
   psycopg2-binary
   python-dotenv
+  djangorestframework-gis
