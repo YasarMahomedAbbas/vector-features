@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework_gis.filters import InBBoxFilter
 
 from .models import Feature
@@ -16,6 +17,9 @@ class FeatureViewSet(viewsets.ModelViewSet):
     - PATCH /features/{id}/ - Partial update
     - DELETE /features/{id}/ - Delete feature
     """
+    # Only authenticated users can create, update, or delete features, anyone can read
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
     queryset = Feature.objects.all()
     serializer_class = FeatureSerializer
     bbox_filter_field = 'geometry'
