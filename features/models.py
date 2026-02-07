@@ -1,5 +1,6 @@
 from django.contrib.gis.db import models
 
+
 class Feature(models.Model):
     """
     Model representing a geospatial feature with geometry and name.
