@@ -52,15 +52,7 @@ docker compose up --build
 ```
 A superuser account will be created with the username and password set in the .env file.
 
-The API will be available at http://localhost:8100/features/ (*note, the docker-compose routes to port 8100, to not conflict with local development port - Just for convenience*)
-
-### Load Data
-
-To load the Dutch municipalities dataset:
-
-```bash
-docker compose exec web python scripts/upload_features.py
-```
+The API will be available at http://localhost:8000/features/ 
 
 ## Deployment - Local Development                                                                                                            
                                                                                                                                                              
@@ -132,11 +124,9 @@ python manage.py test
 
  
  ## Usage 
- *For these examples, I will use localhost:800, keep in mind, if you are running with docker, you will need to use localhost:8100, or update the port to 8000 in the docker-compose*
-
 When the server is running:
 
-To upload the mincipalities_nl.geojson
+To upload the municipalities_nl.geojson
 run: 
 ```bash
 docker compose exec web python scripts/upload_features.py
