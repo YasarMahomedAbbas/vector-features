@@ -163,6 +163,12 @@ Bounding box filter:
 GET /features/?in_bbox=min_lon,min_lat,max_lon,max_lat
 ```
 
+Example: Bounding box surrounding the Groningen Province:
+```bash
+curl "http://localhost:8000/features/?in_bbox=6.0,53.0,7.3,53.6" 
+```
+**Note: Ensure that you've run the upload_features script first and the results may include features from neighboring areas**
+
 ---
 To gain access to update or delete features, authenticate yourself by navigating to `localhost:8000/admin` and login with the username and password you created. 
 
