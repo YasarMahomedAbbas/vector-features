@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework_gis.filters import InBBoxFilter
 
 from .models import Feature
-from .serializers import FeatureSerializer
+from .serializers import FeatureListSerializer, FeatureSerializer
 
 
 class FeatureViewSet(viewsets.ModelViewSet):
@@ -24,3 +24,10 @@ class FeatureViewSet(viewsets.ModelViewSet):
     serializer_class = FeatureSerializer
     bbox_filter_field = 'geometry'
     filter_backends = (InBBoxFilter,)
+
+
+    def get_serializer_class(self):
+      """ Use a serializer without geometry for list to reduce payload size. """
+      if self.action == 'list':
+          return FeatureListSerializer
+      return FeatureSerializer
