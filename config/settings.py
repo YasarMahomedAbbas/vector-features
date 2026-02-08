@@ -97,8 +97,8 @@ DATABASES = {
         "NAME": "vector_features_db",
         "USER": os.environ.get("POSTGIS_USER"),
         "PASSWORD": os.environ.get("POSTGIS_PASSWORD"),
-        "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "HOST": os.environ.get("DB_HOST", "127.0.0.1"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
 

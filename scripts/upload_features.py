@@ -85,8 +85,8 @@ if __name__ == "__main__":
     load_dotenv()  # Load environment variables from .env file
 
     # Set configurable parameters from environment variables with defaults
-    user_name = os.environ.get('API_USER_NAME')
-    user_password = os.environ.get('API_USER_PASSWORD')
+    user_name = os.environ.get('DJANGO_SUPERUSER_USERNAME')
+    user_password = os.environ.get('DJANGO_SUPERUSER_PASSWORD')
     api_base_url = os.environ.get('API_BASE_URL', 'http://localhost:8000')
     file_path = os.environ.get('GEOJSON_FILE_PATH', 'data/features.geojson')
 
