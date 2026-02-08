@@ -3,7 +3,7 @@ services:
   db:
     image: postgis/postgis:latest
     environment: 
-      POSTGRES_DB: vector_features_db
+      POSTGRES_DB: ${POSTGIS_DB_NAME}
       POSTGRES_USER: ${POSTGIS_USER}
       POSTGRES_PASSWORD: ${POSTGIS_PASSWORD}
     ports:

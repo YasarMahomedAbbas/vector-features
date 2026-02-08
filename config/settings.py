@@ -94,7 +94,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "vector_features_db",
+        "NAME": os.environ.get("POSTGIS_DB_NAME", "vector_features_db"),
         "USER": os.environ.get("POSTGIS_USER"),
         "PASSWORD": os.environ.get("POSTGIS_PASSWORD"),
         "HOST": os.environ.get("DB_HOST", "127.0.0.1"),

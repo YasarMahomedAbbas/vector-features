@@ -14,9 +14,14 @@ The following endpoints are provided
 
 ```
 
-Two deployment methods are available
+  ## Table of Contents                                                                                                                                       
+  - [Deployment - Docker with Docker Compose](#oDeployment---docker-with-docker-compose)
+  - [Deployment- Local Development](#deployment---local-development)                                                                                                                  
+  - [Usage](#usage) 
 
-## Option 1 - Docker with Docker Compose.
+
+
+## Deployment - Docker with Docker Compose.
 
 
 ### Requirements
@@ -30,10 +35,17 @@ Two deployment methods are available
 ```bash
     POSTGIS_USER=
     POSTGIS_PASSWORD=
+    POSTGIS_DB_NAME=
     DJANGO_SUPERUSER_USERNAME=
     DJANGO_SUPERUSER_PASSWORD=
     DJANGO_SUPERUSER_EMAIL=
 ```
+You may copy the .env.example by running 
+```bash
+cp .env.example .env
+```
+and filling out appropriate fields.
+
 3. Start the application:
 ```bash
 docker compose up --build
@@ -50,21 +62,7 @@ To load the Dutch municipalities dataset:
 docker compose exec web python scripts/upload_features.py
 ```
 
-
-### Filtering
-
-Bounding box filter:
-```
-GET /features/?in_bbox=min_lon,min_lat,max_lon,max_lat
-```
-
-### Running Tests
-
-```bash
-python manage.py test
-```
-
-## Local Development                                                                                                            
+## Deployment - Local Development                                                                                                            
                                                                                                                                                              
 ### Requirements
 - Python 3.14
@@ -86,10 +84,17 @@ pip install -r requirements.txt
 ```bash
 POSTGIS_USER=
 POSTGIS_PASSWORD=
+POSTGIS_DB_NAME=
 DJANGO_SUPERUSER_USERNAME=
 DJANGO_SUPERUSER_PASSWORD=
 DJANGO_SUPERUSER_EMAIL=
 ```
+You may copy the .env.example by running 
+```bash
+cp .env.example .env
+```
+and filling out appropriate fields.
+
 4. Create a PostGIS database
 ```bash
 psql -U postgres                                                                                                                                     
@@ -118,6 +123,13 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
+
+8. Running tests
+
+```bash
+python manage.py test
+```
+
  
  ## Usage 
  *For these examples, I will use localhost:800, keep in mind, if you are running with docker, you will need to use localhost:8100, or update the port to 8000 in the docker-compose*
@@ -142,6 +154,14 @@ while you are not authenticated, you have READONLY access, i.e. you may view all
 Navigate to `localhost:8000/features` for a list of all available features, features are paginated with 100 features per page.
 
 Navigate to `localhost:8000/features/{id}` to view a specific feature with more details (i.e. the geometry).
+
+
+### Filtering
+
+Bounding box filter:
+```
+GET /features/?in_bbox=min_lon,min_lat,max_lon,max_lat
+```
 
 ---
 To gain access to update or delete features, authenticate yourself by navigating to `localhost:8000/admin` and login with the username and password you created. 
